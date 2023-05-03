@@ -1,0 +1,36 @@
+1) 
+use gamesDB
+
+2) 
+db
+
+3)
+db.createCollection("games")
+show collections
+
+4)
+show collections
+
+5)
+db.games.insertMany( [ 
+	{name: "Mincraft", publisher: "Mohammad", year_released: 2010, rating: 4}, 
+	{name: "GTA V", publisher: "Ahmad", year_released: 2014, rating: 5}, 
+	{name: "Fortnite", publisher: "Rami", year_released: 2017, rating: 2}, 
+	{name: "Deathloop", publisher: "Hala", year_released: 2019, rating: 1}, 
+	{name: "PUBG", publisher: "Aya", year_released: 2008, rating: 3} 
+] )
+
+6)
+db.games.find()
+
+7)
+db.games.find().limit(3)
+
+8)
+db.games.find().sort( { rating: -1 } ).limit(3)
+
+9)
+db.games.find( { rating: 5, year_released: { $gt: 2007 } } )
+
+10)
+db.games.update( { rating: 3 }, { $set: { rating: 4 } } )
