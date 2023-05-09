@@ -72,7 +72,7 @@ public class SecondJob {
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf, "second job");
-        job.setJarByClass(JobTwo.class);
+        job.setJarByClass(SecondJob.class);
         job.setCombinerClass(MovieRatingReducer.class);
         job.setReducerClass(MovieRatingReducer.class);
         job.setOutputKeyClass(Text.class);
