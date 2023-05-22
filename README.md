@@ -77,4 +77,198 @@ MR	4, 4
 5	WEB, 0.0
 6	AI, 0.0
 ```
+
+***
+
+## Part-2: NoSQL mongoDB
+#### `test> use gameDB`
+```
+switched to db gameDB
+```
+#### `db`
+```
+gameDB
+```
+#### `gameDB> db.createCollection("games")`
+```
+{ ok: 1 }
+```
+#### `gameDB> show collections`
+```
+games
+```
+#### `db.games.insertMany( [ `
+#### `... {name: "Mincraft", publisher: "Mohammad", year_released: 2010, rating: 4}, `
+#### `... {name: "GTA V", publisher: "Ahmad", year_released: 2014, rating: 5}, `
+#### `... {name: "Fortnite", publisher: "Rami", year_released: 2017, rating: 2}, `
+#### `... {name: "Deathloop", publisher: "Hala", year_released: 2019, rating: 1}, `
+#### `... {name: "PUBG", publisher: "Aya", year_released: 2008, rating: 3} `
+#### `... ] )`
+```
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("646bed576dab34cfcc24fdf2"),
+    '1': ObjectId("646bed576dab34cfcc24fdf3"),
+    '2': ObjectId("646bed576dab34cfcc24fdf4"),
+    '3': ObjectId("646bed576dab34cfcc24fdf5"),
+    '4': ObjectId("646bed576dab34cfcc24fdf6")
+  }
+}
+```
+#### `gameDB> db.games.find()`
+```
+[
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf2"),
+    name: 'Mincraft',
+    publisher: 'Mohammad',
+    year_released: 2010,
+    rating: 4
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf3"),
+    name: 'GTA V',
+    publisher: 'Ahmad',
+    year_released: 2014,
+    rating: 5
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf4"),
+    name: 'Fortnite',
+    publisher: 'Rami',
+    year_released: 2017,
+    rating: 2
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf5"),
+    name: 'Deathloop',
+    publisher: 'Hala',
+    year_released: 2019,
+    rating: 1
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf6"),
+    name: 'PUBG',
+    publisher: 'Aya',
+    year_released: 2008,
+    rating: 3
+  }
+]
+```
+#### `gameDB> db.games.find().limit(3)`
+```
+[
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf2"),
+    name: 'Mincraft',
+    publisher: 'Mohammad',
+    year_released: 2010,
+    rating: 4
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf3"),
+    name: 'GTA V',
+    publisher: 'Ahmad',
+    year_released: 2014,
+    rating: 5
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf4"),
+    name: 'Fortnite',
+    publisher: 'Rami',
+    year_released: 2017,
+    rating: 2
+  }
+]
+```
+#### `gameDB> db.games.find().sort( { rating: -1 } ).limit(3)`
+```
+[
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf3"),
+    name: 'GTA V',
+    publisher: 'Ahmad',
+    year_released: 2014,
+    rating: 5
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf2"),
+    name: 'Mincraft',
+    publisher: 'Mohammad',
+    year_released: 2010,
+    rating: 4
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf6"),
+    name: 'PUBG',
+    publisher: 'Aya',
+    year_released: 2008,
+    rating: 3
+  }
+]
+```
+#### `gameDB> db.games.find( { rating: 5, year_released: { $gt: 2007 } } )`
+```
+[
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf3"),
+    name: 'GTA V',
+    publisher: 'Ahmad',
+    year_released: 2014,
+    rating: 5
+  }
+]
+```
+#### `gameDB> db.games.update( { rating: 3 }, { $set: { rating: 4 } } )`
+```
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+```
+#### `gameDB> db.games.find()`
+```
+[
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf2"),
+    name: 'Mincraft',
+    publisher: 'Mohammad',
+    year_released: 2010,
+    rating: 4
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf3"),
+    name: 'GTA V',
+    publisher: 'Ahmad',
+    year_released: 2014,
+    rating: 5
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf4"),
+    name: 'Fortnite',
+    publisher: 'Rami',
+    year_released: 2017,
+    rating: 2
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf5"),
+    name: 'Deathloop',
+    publisher: 'Hala',
+    year_released: 2019,
+    rating: 1
+  },
+  {
+    _id: ObjectId("646bed576dab34cfcc24fdf6"),
+    name: 'PUBG',
+    publisher: 'Aya',
+    year_released: 2008,
+    rating: 4
+  }
+]
+```
 ### Done ✅🙂
